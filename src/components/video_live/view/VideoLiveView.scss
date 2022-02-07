@@ -1,0 +1,33 @@
+.VideoLiveView {
+  display: flex;
+  align-items: center;
+
+  line-height: 12px;
+  font-size: 13px;
+  color: white;
+  font-weight: 500;
+}
+
+.VideoLiveView_title {
+  padding: 6px;
+  border-radius: 4px;
+  background-color: #ccc;
+}
+.VideoLiveView_title-live {
+  background-color: red;
+}
+
+.VideoLiveView_view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.VideoLiveView_count {
+  margin-left: 5px;
+}

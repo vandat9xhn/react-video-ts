@@ -1,0 +1,53 @@
+.VideoLiveElm {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .IconsEye {
+        stroke: currentColor;
+    }
+    .IconsEye_in {
+        fill: currentColor;
+    }
+}
+
+.VideoLiveElm_face{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.VideoLiveElm_view{
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    padding: 12px;
+}
+
+// -----
+
+.VideoLiveElm-mobile {
+    &.VideoLiveElm-play {
+        .VideoLiveElm_view,
+        .VideoLiveElm_utils {
+            opacity: 0;
+            visibility: hidden;
+
+            transition: all 250ms ease-in-out;
+        }
+    }
+    &.VideoLiveElm:hover {
+        .VideoLiveElm_view,
+        .VideoLiveElm_utils {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .VideoLiveElm_view{
+        padding: 8px;
+    }
+}

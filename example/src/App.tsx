@@ -1,10 +1,14 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-video-ts'
+import { Video } from 'react-video-ts'
 import 'react-video-ts/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <div style={{ margin: 'auto', width: '700px', height: '450px' }}>
+      <Video video='https://media.w3.org/2010/05/sintel/trailer.mp4	' />
+    </div>
+  )
 }
 
 export default App

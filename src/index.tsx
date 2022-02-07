@@ -1,10 +1,5 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+import Video from './components/video/_main/Video'
+import VideoLive from './components/video_live/_main/VideoLive'
 
-interface Props {
-  text: string
-}
-
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+//
+export { Video, VideoLive }

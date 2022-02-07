@@ -1,0 +1,58 @@
+.VideoTimeLine {
+    height: 9px;
+    padding: 0 6px;
+
+    &:hover {
+        .VideoTimeLine_slider {
+            opacity: 1;
+        }
+    }
+}
+
+.VideoTimeLine_buffer{
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 100%;
+}
+
+.VideoTimeLine_range {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+    padding: 3px 0;
+    border-radius: 2px;
+}
+// .
+.VideoTimeLine_range_contain {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff66;
+}
+.VideoTimeLine_range_contain-active {
+    background-color: white;
+}
+
+.VideoTimeLine_buffer {
+    padding: 3px 0;
+}
+// .
+.VideoTimeLine_buffer_contain {
+    height: 100%;
+    border-radius: 2px;
+    background-color: #ffffff80;
+}
+
+.VideoTimeLine_slider {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+}

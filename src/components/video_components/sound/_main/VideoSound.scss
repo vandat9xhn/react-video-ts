@@ -1,0 +1,64 @@
+.VideoSound {
+  position: relative;
+  padding-left: 4px;
+}
+.VideoSound-active,
+.VideoSound:hover {
+  .VideoSound_volume {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .VideoSound_slider {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.VideoSound_icon{
+    display: flex;
+    position: relative;
+    z-index: 1;
+
+    cursor: pointer;
+}
+
+.VideoSound_volume {
+    position: absolute;
+  left: 50%;
+  top: 50%;
+
+  height: 18px;
+  width: 100px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translate(-50%, -50%) rotate(-90deg) translateX(50%);
+  transition: all 250ms ease-in-out;
+}
+// .
+.VideoSound_volume_contain{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.VideoSound_range {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background-color: currentColor;
+}
+.VideoSound_range-active {
+  background-color: #007bff;
+}
+
+.VideoSound_slider {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+}
