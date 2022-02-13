@@ -1,3 +1,7 @@
+html[data-fullscreen-hide-cursor] {
+  cursor: none;
+}
+
 .display-none {
   display: none;
 }

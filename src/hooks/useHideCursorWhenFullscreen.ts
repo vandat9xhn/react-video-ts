@@ -3,6 +3,9 @@ import { useEffect, useRef } from 'react'
 import { useForceUpdate } from './useForceUpdate'
 
 //
+type TypeHandleMouse = null | (() => void)
+
+//
 export function useHideCursorWhenFullscreen({
   fullscreen = false,
   time_to_hide = 1500
@@ -12,6 +15,10 @@ export function useHideCursorWhenFullscreen({
   const ref_c_time = useRef(0)
   const ref_mouse_down = useRef(false)
 
+  const ref_handle_down = useRef<TypeHandleMouse>(null)
+  const ref_handle_move = useRef<TypeHandleMouse>(null)
+  const ref_handle_up = useRef<TypeHandleMouse>(null)
+
   const ref_is_hide_cursor = useRef(false)
 
   //
@@ -20,17 +27,29 @@ export function useHideCursorWhenFullscreen({
   //
   useEffect(() => {
     if (fullscreen) {
-      window.addEventListener('mousemove', handleMouseMove)
-      window.addEventListener('mousedown', handleMouseDown)
-      window.addEventListener('mouseup', handleMouseUp)
+      ref_handle_down.current = handleMouseDown
+      ref_handle_move.current = handleMouseMove
+      ref_handle_up.current = handleMouseUp
+
+      window.addEventListener('mousedown', ref_handle_down.current)
+      window.addEventListener('mousemove', ref_handle_move.current)
+      window.addEventListener('mouseup', ref_handle_up.current)
 
       startCountUp()
     } else {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mousedown', handleMouseDown)
-      window.removeEventListener('mouseup', handleMouseUp)
+      ref_handle_down.current &&
+        window.removeEventListener('mousedown', ref_handle_down.current)
+      ref_handle_move.current &&
+        window.removeEventListener('mousemove', ref_handle_move.current)
+      ref_handle_up.current &&
+        window.removeEventListener('mouseup', ref_handle_up.current)
+
+      ref_handle_down.current = null
+      ref_handle_move.current = null
+      ref_handle_up.current = null
 
       ref_interval.current && clearInterval(ref_interval.current)
+      ref_interval.current = null
     }
   }, [fullscreen])
 

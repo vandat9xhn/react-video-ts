@@ -2,7 +2,7 @@ import React from 'react'
 //
 import { getClassModuleCss } from '../../../../utils/getClassModuleCss'
 //
-import IconZoomArrow from '../../../../icons/zoom_arrow/IconZoomArrow'
+import VideoZoomIcon from '../icon/VideoZoomIcon'
 //
 import stylesVideoZoom from './VideoZoom.scss'
 
@@ -20,21 +20,8 @@ interface VideoZoomProps {
   size_icon?: string
   is_zoom_out: boolean
   toggleZoom: () => void
-}
 
-//
-const VideoZoomIcon = ({
-  zoom_icon_name = 'arrow',
-  is_zoom_out = false,
-  size_icon = ''
-}) => {
-  //
-  if (zoom_icon_name == 'arrow') {
-    return <IconZoomArrow zoom_out={!is_zoom_out} size_icon={size_icon} />
-  }
-
-  //
-  return <div></div>
+  IconComponent?: typeof VideoZoomIcon
 }
 
 //
@@ -45,12 +32,14 @@ function VideoZoom({
   zoom_icon_name = 'arrow',
   size_icon,
   is_zoom_out,
-  toggleZoom
+  toggleZoom,
+
+  IconComponent = VideoZoomIcon
 }: VideoZoomProps) {
   //
   return (
     <div className={_getClassModuleCss('VideoZoom')} onClick={toggleZoom}>
-      <VideoZoomIcon
+      <IconComponent
         zoom_icon_name={zoom_icon_name}
         is_zoom_out={is_zoom_out}
         size_icon={size_icon}
