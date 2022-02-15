@@ -26,36 +26,14 @@ export function useHideCursorWhenFullscreen({
     //
     useEffect(() => {
         if (fullscreen) {
-            ref_handle_down.current = handleMouseDown;
-            ref_handle_move.current = handleMouseMove;
-            ref_handle_up.current = handleMouseUp;
-
-            window.addEventListener('mousedown', ref_handle_down.current);
-            window.addEventListener('mousemove', ref_handle_move.current);
-            window.addEventListener('mouseup', ref_handle_up.current);
-
-            startCountUp();
+            addMouseEvent();
         } else {
-            ref_handle_down.current &&
-                window.removeEventListener(
-                    'mousedown',
-                    ref_handle_down.current
-                );
-            ref_handle_move.current &&
-                window.removeEventListener(
-                    'mousemove',
-                    ref_handle_move.current
-                );
-            ref_handle_up.current &&
-                window.removeEventListener('mouseup', ref_handle_up.current);
-
-            ref_handle_down.current = null;
-            ref_handle_move.current = null;
-            ref_handle_up.current = null;
-
-            ref_interval.current && clearInterval(ref_interval.current);
-            ref_interval.current = null;
+            removeMouseEvent();
         }
+
+        return () => {
+            removeMouseEvent();
+        };
     }, [fullscreen]);
 
     //
@@ -78,6 +56,38 @@ export function useHideCursorWhenFullscreen({
     }, [ref_is_hide_cursor.current]);
 
     // ----
+
+    //
+    function addMouseEvent() {
+        ref_handle_down.current = handleMouseDown;
+        ref_handle_move.current = handleMouseMove;
+        ref_handle_up.current = handleMouseUp;
+
+        window.addEventListener('mousedown', ref_handle_down.current);
+        window.addEventListener('mousemove', ref_handle_move.current);
+        window.addEventListener('mouseup', ref_handle_up.current);
+
+        startCountUp();
+    }
+
+    //
+    function removeMouseEvent() {
+        ref_handle_down.current &&
+            window.removeEventListener('mousedown', ref_handle_down.current);
+        ref_handle_move.current &&
+            window.removeEventListener('mousemove', ref_handle_move.current);
+        ref_handle_up.current &&
+            window.removeEventListener('mouseup', ref_handle_up.current);
+
+        ref_handle_down.current = null;
+        ref_handle_move.current = null;
+        ref_handle_up.current = null;
+
+        ref_interval.current && clearInterval(ref_interval.current);
+        ref_interval.current = null;
+    }
+
+    // ------
 
     //
     function startCountUp() {
