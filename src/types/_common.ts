@@ -6,7 +6,7 @@ export type RefDivElmType = RefElmType<HTMLDivElement>
 
 // MOUSE
 export type MouseEventType = MouseEvent | TouchEvent
-export type ReactMouseEventType = React.MouseEvent | React.TouchEvent | MouseEventType
+export type ReactMouseEventType<T> = React.MouseEvent<T> | React.TouchEvent<T>
 
 export type MouseFuncType = (e: MouseEventType) => void
-export type ReactMouseFuncType = (e: ReactMouseEventType) => void
+export type ReactMouseFuncType<T> = (e: ReactMouseEventType<T>) => void

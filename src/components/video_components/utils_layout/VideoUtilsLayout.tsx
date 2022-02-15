@@ -1,11 +1,9 @@
 import React, { ReactElement, useEffect } from 'react'
+import { useBool, useHold } from 'react-commons-ts'
 //
 import { RefElmType } from '../../../types/_common'
 //
 import { getClassModuleCss } from '../../../utils/getClassModuleCss'
-//
-import { useHold } from '../../../hooks/useHold'
-import { useBool } from '../../../hooks/useBool'
 //
 import stylesVideoUtilsLayout from './VideoUtilsLayout.scss'
 

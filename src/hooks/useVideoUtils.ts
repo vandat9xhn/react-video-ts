@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { useForceUpdate } from 'react-commons-ts'
+// 
 import { RefMainVideoType, RefVideoType } from '../types/useVideo'
 //
 import { exitFullscreen, requestFullscreen } from '../utils/handelFullScreen'
 import { observerDisplay } from '../utils/observerDisplay'
 //
-import { useForceUpdate } from './useForceUpdate'
 import { useHideCursorWhenFullscreen } from './useHideCursorWhenFullscreen'
 
 //
