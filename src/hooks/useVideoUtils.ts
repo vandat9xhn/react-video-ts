@@ -74,7 +74,8 @@ export function useVideoUtils({
   const forceUpdate = useForceUpdate()
 
   const { ref_is_hide_cursor } = useHideCursorWhenFullscreen({
-    fullscreen: is_zoom_max
+    use_fullscreen: use_fullscreen,
+    fullscreen: is_zoom_max,
   })
 
   //

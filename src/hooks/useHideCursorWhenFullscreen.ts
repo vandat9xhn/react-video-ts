@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useForceUpdate } from 'react-commons-ts';
+import { useForceUpdate, useToggleDataset } from 'react-commons-ts';
 
 //
 type TypeHandleMouse = null | (() => void);
@@ -7,6 +7,7 @@ type TypeHandleMouse = null | (() => void);
 //
 export function useHideCursorWhenFullscreen({
     fullscreen = false,
+    use_fullscreen = false,
     time_to_hide = 1500
 }) {
     //
@@ -24,44 +25,30 @@ export function useHideCursorWhenFullscreen({
     const forceUpdate = useForceUpdate();
 
     //
-    useEffect(() => {
-        if (fullscreen) {
-            addMouseEvent();
-        } else {
-            removeMouseEvent();
-        }
-
-        return () => {
-            removeMouseEvent();
-        };
-    }, [fullscreen]);
+    useToggleDataset({
+        elm: document.getElementsByTagName('html')[0],
+        attr_str: 'data-fullscreen-hide-cursor',
+        is_remove: !ref_is_hide_cursor.current
+    });
 
     //
     useEffect(() => {
-        const html = document.getElementsByTagName('html')[0];
-
-        if (ref_is_hide_cursor.current) {
-            html.dataset.fullscreenHideCursor = '1';
-        } else {
-            if (html.dataset.fullscreenHideCursor) {
-                html.dataset.fullscreenHideCursor = `${
-                    parseInt(html.dataset.fullscreenHideCursor) - 1
-                }`;
-
-                if (parseInt(html.dataset.fullscreenHideCursor) == 0) {
-                    html.removeAttribute('data-fullscreen-hide-cursor');
-                }
+        if (use_fullscreen) {
+            if (fullscreen) {
+                addMouseEvent();
+            } else {
+                removeMouseEvent();
             }
         }
-    }, [ref_is_hide_cursor.current]);
+    }, [use_fullscreen && fullscreen]);
 
     // ----
 
     //
     function addMouseEvent() {
-        ref_handle_down.current = handleMouseDown;
-        ref_handle_move.current = handleMouseMove;
-        ref_handle_up.current = handleMouseUp;
+        ref_handle_down.current = ref_handle_down.current || handleMouseDown;
+        ref_handle_move.current = ref_handle_move.current || handleMouseMove;
+        ref_handle_up.current = ref_handle_up.current || handleMouseUp;
 
         window.addEventListener('mousedown', ref_handle_down.current);
         window.addEventListener('mousemove', ref_handle_move.current);
@@ -83,8 +70,10 @@ export function useHideCursorWhenFullscreen({
         ref_handle_move.current = null;
         ref_handle_up.current = null;
 
-        ref_interval.current && clearInterval(ref_interval.current);
-        ref_interval.current = null;
+        if (ref_interval.current) {
+            clearInterval(ref_interval.current);
+            ref_interval.current = null;
+        }
     }
 
     // ------

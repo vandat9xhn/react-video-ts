@@ -4,7 +4,7 @@ import 'react-range-slider-ts/dist/index.css';
 //
 
 //
-const MyOneSlider: typeof OneSlider = ({
+function MyOneSlider({
     range,
     active_range,
     slider,
@@ -12,6 +12,7 @@ const MyOneSlider: typeof OneSlider = ({
 
     only_drag_slider,
     ref_has_change_range,
+    ref_is_run,
 
     getRangeAngel,
     handleChange,
@@ -19,7 +20,7 @@ const MyOneSlider: typeof OneSlider = ({
     afterMouseDown,
     afterMousemove,
     afterMouseUp
-}) => {
+}: React.ComponentProps<typeof OneSlider>) {
     //
     return (
         <OneSlider
@@ -27,8 +28,11 @@ const MyOneSlider: typeof OneSlider = ({
             active_range={active_range}
             slider={slider}
             value={value}
+            //
             only_drag_slider={only_drag_slider}
             ref_has_change_range={ref_has_change_range}
+            ref_is_run={ref_is_run}
+            //
             getRangeAngel={getRangeAngel}
             handleChange={handleChange}
             afterMouseDown={afterMouseDown}
@@ -36,6 +40,6 @@ const MyOneSlider: typeof OneSlider = ({
             afterMouseUp={afterMouseUp}
         />
     );
-};
+}
 
 export default MyOneSlider;

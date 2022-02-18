@@ -1,6 +1,6 @@
 {
   "name": "react-video-ts",
-  "version": "1.1.0",
+  "version": "1.1.4",
   "description": "Video for react with typescript",
   "author": "vandat9xhn",
   "license": "MIT",
@@ -63,7 +63,7 @@
     "dist"
   ],
   "dependencies": {
-    "react-commons-ts": "^1.1.1",
-    "react-range-slider-ts": "^1.0.0"
+    "react-commons-ts": "^1.2.0",
+    "react-range-slider-ts": "^1.1.1"
   }
 }

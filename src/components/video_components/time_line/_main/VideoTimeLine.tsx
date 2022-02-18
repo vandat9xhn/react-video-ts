@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react';
+import { common_types } from 'react-commons-ts';
 //
 import { handleChangeTimeType } from '../../../../types/useVideo';
 //
 import { getClassModuleCss } from '../../../../utils/getClassModuleCss';
 //
 import MyOneSlider from '../../../one_slider/MyOneSlider';
-// 
+//
 import stylesVideoTimeLine from './VideoTimeLine.scss';
 
 //
@@ -51,6 +52,8 @@ interface VideoTimeLineProps {
     active_range?: ReactElement;
     slider?: ReactElement;
 
+    ref_is_run?: common_types.UseRefType<boolean>;
+
     handleChangeTime: handleChangeTimeType;
     handleStartMoveTime: () => void;
     handleEndMoveTime: () => void;
@@ -66,6 +69,8 @@ function VideoTimeLine({
     active_range = VideoTimeLineDefaultProps.active_range,
     slider = VideoTimeLineDefaultProps.slider,
 
+    ref_is_run,
+
     handleChangeTime,
     handleStartMoveTime,
     handleEndMoveTime
@@ -79,7 +84,13 @@ function VideoTimeLine({
 
     //
     return (
-        <div className={_getClassModuleCss('VideoTimeLine')}>
+        <div
+            className={`${_getClassModuleCss('VideoTimeLine')} ${
+                ref_is_run?.current
+                    ? _getClassModuleCss('VideoTimeLine-run')
+                    : ''
+            }`}
+        >
             <MyOneSlider
                 range={
                     <React.Fragment>
@@ -101,7 +112,9 @@ function VideoTimeLine({
                 active_range={active_range}
                 slider={slider}
                 value={c_time}
+                //
                 only_drag_slider={false}
+                ref_is_run={ref_is_run}
                 //
                 handleChange={onChangeTime}
                 afterMouseDown={handleStartMoveTime}

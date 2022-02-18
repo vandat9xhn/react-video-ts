@@ -5,7 +5,7 @@ import { handleChangeVolumeType } from '../../../../types/useVideo';
 import { getClassModuleCss } from '../../../../utils/getClassModuleCss';
 //
 import IconSound from '../../../../icons/sound/IconSound';
-// 
+//
 import MyOneSlider from '../../../one_slider/MyOneSlider';
 //
 import stylesVideoSound from './VideoSound.scss';
@@ -42,6 +42,8 @@ interface VideoSoundProps {
     active_range?: ReactElement;
     slider?: ReactElement;
 
+    ref_is_run?: React.ComponentProps<typeof MyOneSlider>['ref_is_run'];
+
     toggleMute: () => void;
     handleChangeVolume: handleChangeVolumeType;
 }
@@ -55,6 +57,8 @@ function VideoSound({
     range = VideoSoundDefaultProps.range,
     active_range = VideoSoundDefaultProps.active_range,
     slider = VideoSoundDefaultProps.slider,
+
+    ref_is_run,
 
     toggleMute,
     handleChangeVolume
@@ -116,6 +120,7 @@ function VideoSound({
                         value={is_mute ? 0 : volume * 100}
                         //
                         only_drag_slider={false}
+                        ref_is_run={ref_is_run}
                         getRangeAngel={getRangeAngel}
                         //
                         handleChange={onVolumeValueChange}
