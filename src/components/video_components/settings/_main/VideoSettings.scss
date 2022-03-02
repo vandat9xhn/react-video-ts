@@ -1,3 +1,10 @@
 .VideoSettings_icon {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.VideoSettings_icon_svg {
+    transition: transform 150ms ease-in;
+}
+.VideoSettings_icon_svg-open {
+    transform: rotate(45deg);
 }

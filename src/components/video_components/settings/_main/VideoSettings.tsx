@@ -1,34 +1,58 @@
-import React from 'react'
+import React from 'react';
 //
-import { getClassModuleCss } from '../../../../utils/getClassModuleCss'
+import { refBtnSettingType } from '../../../../types/useVideo';
 //
-import IconSetting from '../../../../icons/setting/IconSetting'
+import { getClassModuleCss } from '../../../../utils/getClassModuleCss';
 //
-import stylesVideoSettings from './VideoSettings.scss'
+import IconSetting from '../../../../icons/setting/IconSetting';
+//
+import stylesVideoSettings from './VideoSettings.scss';
 
 //
 function _getClassModuleCss(className = '') {
-  return getClassModuleCss({
-    className: className,
-    styles: stylesVideoSettings
-  })
+    return getClassModuleCss({
+        className: className,
+        styles: stylesVideoSettings
+    });
 }
 
 //
 interface VideoSettingsProps {
-  size_icon?: string
+    ref_btn_setting: refBtnSettingType;
+    open_setting: boolean;
+    size_icon?: string;
+    toggleOpenSetting: () => void;
 }
 
 //
-function VideoSettings({ size_icon }: VideoSettingsProps) {
-  //
-  return (
-    <div className={_getClassModuleCss('VideoSettings')}>
-      <div className={_getClassModuleCss('VideoSettings_icon')}>
-        <IconSetting stroke={'currentColor'} size_icon={size_icon} />
-      </div>
-    </div>
-  )
+function VideoSettings({
+    ref_btn_setting,
+    open_setting,
+    size_icon,
+    toggleOpenSetting
+}: VideoSettingsProps) {
+    //
+    return (
+        <div className={_getClassModuleCss('VideoSettings')}>
+            <div
+                ref={ref_btn_setting}
+                className={`${_getClassModuleCss('VideoSettings_icon')}`}
+                onClick={toggleOpenSetting}
+            >
+                <IconSetting
+                    class_icon={`${_getClassModuleCss(
+                        'VideoSettings_icon_svg'
+                    )} ${
+                        open_setting
+                            ? _getClassModuleCss('VideoSettings_icon_svg-open')
+                            : ''
+                    }`}
+                    stroke={'currentColor'}
+                    size_icon={size_icon}
+                />
+            </div>
+        </div>
+    );
 }
 
-export default VideoSettings
+export default VideoSettings;

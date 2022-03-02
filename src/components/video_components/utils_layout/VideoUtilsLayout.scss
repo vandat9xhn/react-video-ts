@@ -1,15 +1,14 @@
 .VideoUtilsLayout {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 
-  opacity: 1;
-  visibility: visible;
-  transition: all 200ms ease-in-out;
+    opacity: 1;
+    visibility: visible;
+    transition: all 200ms ease-in-out;
 }
-
 .VideoUtilsLayout-out {
-  opacity: 0;
-  visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
 }

@@ -1,10 +1,12 @@
 import React from 'react';
+import { common_types } from 'react-commons-ts';
 //
 import { IS_MOBILE } from '../../../const';
 //
 import {
     handleChangeTimeType,
-    handleChangeVolumeType
+    handleChangeVolumeType,
+    refBtnSettingType
 } from '../../../types/useVideo';
 //
 import { getClassModuleCss } from '../../../utils/getClassModuleCss';
@@ -17,7 +19,6 @@ import VideoZoom from '../../video_components/zoom/_main/VideoZoom';
 import VideoSound from '../../video_components/sound/_main/VideoSound';
 //
 import VideoUtilsStyles from './VideoUtils.scss';
-import { common_types } from 'react-commons-ts';
 
 //
 function _getClassModuleCss(className = '') {
@@ -38,10 +39,14 @@ interface VideoUtilsProps {
     buffer_time: number;
     total_time: number;
 
+    ref_btn_setting: refBtnSettingType;
+    open_setting: boolean;
     size_icon?: string;
 
     ref_timeline_run?: common_types.UseRefType<boolean>;
     ref_sound_run?: common_types.UseRefType<boolean>;
+
+    toggleOpenSetting: () => void;
 
     togglePlayPause: () => void;
     toggleZoom: () => void;
@@ -64,10 +69,14 @@ function VideoUtils({
     buffer_time,
     total_time,
 
+    ref_btn_setting,
+    open_setting,
     size_icon,
 
     ref_timeline_run,
     ref_sound_run,
+
+    toggleOpenSetting,
 
     togglePlayPause,
     toggleZoom,
@@ -132,7 +141,12 @@ function VideoUtils({
 
                 {IS_MOBILE ? null : (
                     <div className={_getClassModuleCss('VideoUtils_part')}>
-                        <VideoSettings size_icon={size_icon} />
+                        <VideoSettings
+                            ref_btn_setting={ref_btn_setting}
+                            open_setting={open_setting}
+                            size_icon={size_icon}
+                            toggleOpenSetting={toggleOpenSetting}
+                        />
                     </div>
                 )}
 

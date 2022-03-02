@@ -1,0 +1,18 @@
+.VideoSpeedChoice {
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.VideoSpeedChoice_check {
+    margin-right: 5px;
+}
+.VideoSpeedChoice_check-not {
+    opacity: 0;
+}

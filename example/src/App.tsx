@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-
-import { Video } from 'react-video-ts';
+//
+import { Video, VideoLive } from 'react-video-ts';
 import 'react-video-ts/dist/index.css';
+//
+import subtitle from './subtitle.vtt';
 
+//
 const App = () => {
     //
     const [is_close, setIsClose] = useState(false);
@@ -28,8 +31,18 @@ const App = () => {
                         backgroundColor: 'black'
                     }}
                 >
-                    <Video
+                    <VideoLive
                         video='https://media.w3.org/2010/05/sintel/trailer.mp4'
+                        total_view={20}
+                        track_arr={[
+                            {
+                                label: 'English',
+                                kind: 'subtitles',
+                                srcLang: 'en',
+                                src: subtitle,
+                                default: true
+                            }
+                        ]}
                         use_fullscreen={true}
                         max_zoom_lv={1}
                     />

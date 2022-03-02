@@ -27,8 +27,8 @@ function IconsEye({
       height={size_icon}
       width={size_icon}
       viewBox={`${x} ${y} 200 200`}
-      // stroke='black'
-      // fill='black'
+      stroke='currentColor'
+      fill='currentColor'
       strokeLinecap='round'
     >
       {/* Eye for showing password x=200 y=200 Toggle:close_eye */}

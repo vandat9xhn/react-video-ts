@@ -5,6 +5,10 @@ import { RefElmType } from '../../../types/_common';
 //
 import { getClassModuleCss } from '../../../utils/getClassModuleCss';
 //
+import VideoSettingsPage, {
+    VideoSettingsPageProps
+} from '../settings/page/VideoSettingsPage';
+//
 import stylesVideoUtilsLayout from './VideoUtilsLayout.scss';
 
 //
@@ -22,6 +26,8 @@ interface VideoUtilsLayoutProps {
     is_hide_cursor: boolean;
     stop_hide_utils?: boolean;
     children: ReactElement;
+
+    open_setting: boolean;
 }
 
 //
@@ -30,7 +36,9 @@ function VideoUtilsLayout({
     use_hide_utils = true,
     is_hide_cursor,
     stop_hide_utils = false,
-    children
+    children,
+
+    open_setting
 }: VideoUtilsLayoutProps) {
     //
     const { StartHold, StopHold } = useHold({ time: 1500 });
@@ -82,7 +90,7 @@ function VideoUtilsLayout({
     return (
         <div
             className={`${_getClassModuleCss('VideoUtilsLayout')} ${
-                (is_true || is_hide_cursor) && !stop_hide_utils
+                (is_true || is_hide_cursor) && !stop_hide_utils && !open_setting
                     ? _getClassModuleCss('VideoUtilsLayout-out')
                     : ''
             }`}
