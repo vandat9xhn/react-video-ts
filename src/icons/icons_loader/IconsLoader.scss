@@ -1,0 +1,34 @@
+.IconsLoader-active {
+    animation: rotate-360 0.75s linear infinite;
+
+    .IconsLoader_spinner {
+        animation: spinner 2s ease-in-out infinite;
+    }
+}
+
+.IconsLoader_spinner {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 550;
+}
+
+// ----
+
+@keyframes rotate-360 {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        stroke-dashoffset: 550;
+    }
+
+    75% {
+        stroke-dashoffset: 980;
+    }
+
+    100% {
+        stroke-dashoffset: 550;
+    }
+}

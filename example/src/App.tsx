@@ -31,8 +31,8 @@ const App = () => {
                         backgroundColor: 'black'
                     }}
                 >
-                    <VideoLive
-                        video='https://media.w3.org/2010/05/sintel/trailer.mp4'
+                    <Video
+                        video='http://media.w3.org/2010/05/bunny/movie.ogv'
                         total_view={20}
                         track_arr={[
                             {

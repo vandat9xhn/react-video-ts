@@ -87,6 +87,7 @@ function Video({
     //
     const {
         ref_is_play,
+        ref_is_waiting,
         ref_zoom_lv,
 
         ref_volume,
@@ -95,7 +96,7 @@ function Video({
         ref_c_time,
         ref_total_time,
         ref_buffer_time,
-        ref_holding_slider,
+        // ref_holding_slider,
 
         ref_is_hide_cursor,
 
@@ -124,11 +125,11 @@ function Video({
         changeTime,
         startMoveTime,
         endMoveTime,
-        getTotalTime,
-        changeTotalTime,
+        // getTotalTime,
+        // changeTotalTime,
 
         // live
-        gotoLiveView
+        // gotoLiveView
     } = useVideoUtils({
         ref_main_video: ref_main_video,
         ref_video_elm: ref_video_elm,
@@ -171,6 +172,7 @@ function Video({
             total_view={total_view}
             //
             is_play={ref_is_play.current}
+            is_waiting={ref_is_waiting.current}
             is_mute={ref_is_mute.current}
             volume={ref_volume.current}
             //

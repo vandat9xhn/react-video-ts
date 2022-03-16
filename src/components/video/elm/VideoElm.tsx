@@ -22,6 +22,7 @@ import VideoUtilsLayout from '../../video_components/utils_layout/VideoUtilsLayo
 //
 import VideoElmStyles from './VideoElm.scss';
 import VideoSettingsPage from '../../video_components/settings/page/VideoSettingsPage';
+import CircleLoading from '../../circle_loading/CircleLoading';
 
 //
 function _getClassModuleCss(className = '') {
@@ -41,6 +42,7 @@ interface VideoElmProps {
 
     //
     is_play: boolean;
+    is_waiting: boolean;
     is_mute: boolean;
     volume: number;
     is_zoom_out: boolean;
@@ -90,6 +92,7 @@ function VideoElm({
     total_view,
 
     is_play,
+    is_waiting,
     is_mute,
     volume,
     is_zoom_out,
@@ -136,7 +139,7 @@ function VideoElm({
     //
     function handleClickOutSide() {
         open_setting && toggleOpenSetting();
-        handleSettingDetail('home')
+        handleSettingDetail('home');
     }
 
     //
@@ -154,6 +157,12 @@ function VideoElm({
             <div className={`${_getClassModuleCss('VideoElm_face')}`}>
                 {face_video_elm}
             </div>
+
+            {is_waiting && (
+                <div className={`${_getClassModuleCss('VideoElm_waiting')}`}>
+                    <CircleLoading is_fetching={is_waiting} />
+                </div>
+            )}
 
             {open_setting && (
                 <ClickingOutSideFull

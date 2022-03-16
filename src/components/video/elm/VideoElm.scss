@@ -13,6 +13,15 @@
     height: 100%;
 }
 
+.VideoElm_waiting {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
 .VideoElm_settings {
     // display: none;
     position: absolute;

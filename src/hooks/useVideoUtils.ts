@@ -61,6 +61,7 @@ export function useVideoUtils({
 }) {
     //
     const ref_is_play = useRef(initial_is_play);
+    const ref_is_waiting = useRef(false);
     const ref_zoom_lv = useRef(initial_zoom_lv);
 
     const ref_volume = useRef(initial_volume);
@@ -112,6 +113,8 @@ export function useVideoUtils({
             handleChangeDuration
         );
         ref_video_elm.current.addEventListener('pause', handleWhenPause);
+        ref_video_elm.current.addEventListener('playing', handlePlaying);
+        ref_video_elm.current.addEventListener('waiting', handleWaiting);
 
         return () => {
             if (ref_video_elm.current) {
@@ -136,6 +139,14 @@ export function useVideoUtils({
                 ref_video_elm.current.removeEventListener(
                     'pause',
                     handleWhenPause
+                );
+                ref_video_elm.current.removeEventListener(
+                    'playing',
+                    handlePlaying
+                );
+                ref_video_elm.current.removeEventListener(
+                    'waiting',
+                    handleWaiting
                 );
             }
         };
@@ -256,12 +267,24 @@ export function useVideoUtils({
             return;
         }
 
-        if (ref_holding_slider.current) {
+        if (ref_holding_slider.current || ref_is_waiting.current) {
             return;
         }
 
         ref_is_play.current = false;
         forceUpdate();
+    }
+
+    function handleWaiting() {
+        ref_is_waiting.current = true;
+        forceUpdate();
+    }
+
+    function handlePlaying() {
+        if (ref_is_waiting.current) {
+            ref_is_waiting.current = false;
+            forceUpdate();
+        }
     }
 
     // ----
@@ -375,25 +398,21 @@ export function useVideoUtils({
 
     //
     function startMoveTime() {
-        if (!ref_video_elm.current) {
-            return;
-        }
-
         ref_holding_slider.current = true;
+        forceUpdate();
+
         if (ref_is_play.current) {
-            ref_video_elm.current.pause();
+            ref_video_elm.current?.pause();
         }
     }
 
     //
     function endMoveTime() {
-        if (!ref_video_elm.current) {
-            return;
-        }
-
         ref_holding_slider.current = false;
+        forceUpdate();
+
         if (ref_is_play.current) {
-            ref_video_elm.current.play();
+            ref_video_elm.current?.play();
         }
     }
 
@@ -495,6 +514,7 @@ export function useVideoUtils({
     //
     return {
         ref_is_play,
+        ref_is_waiting,
         ref_zoom_lv,
 
         ref_volume,
