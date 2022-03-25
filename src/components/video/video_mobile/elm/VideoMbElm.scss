@@ -1,0 +1,105 @@
+.VideoMbElm {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+
+    .VideoPause {
+        cursor: initial;
+    }
+
+    .VideoTimeLine_slider {
+        opacity: 1;
+    }
+}
+
+.VideoMbElm_face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.VideoMbElm_bg_shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.VideoMbElm_waiting {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.VideoMbElm_pause {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.VideoMbElm_pause-play {
+    padding-left: 4px;
+}
+// .
+.VideoMbElm_pause_contain{
+    pointer-events: none;
+}
+
+.VideoMbElm_utils {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.VideoMbElm_settings {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+// .
+.VideoMbElm_settings_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+// .
+.VideoMbElm_settings_page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 250px;
+    max-height: 80vh;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    line-height: 16px;
+    font-size: 14px;
+}

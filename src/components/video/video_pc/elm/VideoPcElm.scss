@@ -1,11 +1,11 @@
-.VideoElm {
+.VideoPcElm {
     position: relative;
     width: 100%;
     height: 100%;
     user-select: none;
 }
 
-.VideoElm_face {
+.VideoPcElm_face {
     position: absolute;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@
     height: 100%;
 }
 
-.VideoElm_waiting {
+.VideoPcElm_waiting {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -22,7 +22,7 @@
     pointer-events: none;
 }
 
-.VideoElm_settings {
+.VideoPcElm_settings {
     // display: none;
     position: absolute;
     bottom: 48px;
@@ -43,6 +43,6 @@
         display: none;
     }
 }
-.VideoElm_settings-open {
+.VideoPcElm_settings-open {
     display: block;
 }

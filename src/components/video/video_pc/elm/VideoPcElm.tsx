@@ -1,8 +1,6 @@
 import React, { ReactElement, useRef } from 'react';
 import { ClickingOutSideFull } from 'react-click-outside-ts';
 //
-import { IS_MOBILE } from '../../../const';
-//
 import {
     handleChangeSpeedType,
     handleChangeTimeType,
@@ -12,25 +10,28 @@ import {
     RefVideoType,
     settingsPageType,
     speedObjType
-} from '../../../types/useVideo';
+} from '../../../../types/useVideo';
 //
-import { getClassModuleCss } from '../../../utils/getClassModuleCss';
+import { getClassModuleCss } from '../../../../utils/getClassModuleCss';
 //
-import VideoUtils from '../utils/VideoUtils';
-import VideoItem from '../../video_components/video/VideoItem';
-import VideoUtilsLayout from '../../video_components/utils_layout/VideoUtilsLayout';
+import VideoUtils from '../utils/VideoPcUtils';
+import VideoItem from '../../../video_components/video/VideoItem';
+import VideoUtilsLayout from '../../../video_components/utils_layout/VideoUtilsLayout';
 //
-import VideoElmStyles from './VideoElm.scss';
-import VideoSettingsPage from '../../video_components/settings/page/VideoSettingsPage';
-import CircleLoading from '../../circle_loading/CircleLoading';
+import VideoPcElmStyles from './VideoPcElm.scss';
+import VideoSettingsPage from '../../../video_components/settings/page/VideoSettingsPage';
+import CircleLoading from '../../../circle_loading/CircleLoading';
 
 //
 function _getClassModuleCss(className = '') {
-    return getClassModuleCss({ className: className, styles: VideoElmStyles });
+    return getClassModuleCss({
+        className: className,
+        styles: VideoPcElmStyles
+    });
 }
 
 //
-interface VideoElmProps {
+interface VideoPcElmProps {
     ref_main_video: RefMainVideoType;
     ref_video_elm: RefVideoType;
     face_video_elm?: ReactElement;
@@ -63,6 +64,7 @@ interface VideoElmProps {
 
     open_setting: boolean;
     toggleOpenSetting: () => void;
+    handleCloseSettings: () => void;
     handleSettingDetail: handleSettingDetailType;
     chooseCustomSpeed: () => void;
     handleChangeSpeed: handleChangeSpeedType;
@@ -81,14 +83,14 @@ interface VideoElmProps {
 }
 
 //
-function VideoElm({
+function VideoPcElm({
     ref_main_video,
     ref_video_elm,
     face_video_elm,
 
     video,
     track_arr,
-    size_icon_utils = IS_MOBILE ? '16px' : '20px',
+    size_icon_utils = '20px',
     total_view,
 
     is_play,
@@ -112,6 +114,8 @@ function VideoElm({
 
     open_setting,
     toggleOpenSetting,
+    handleCloseSettings,
+    
     handleSettingDetail,
     chooseCustomSpeed,
     handleChangeSpeed,
@@ -126,7 +130,7 @@ function VideoElm({
     handleChangeTime,
     handleStartMoveTime,
     handleEndMoveTime
-}: VideoElmProps) {
+}: VideoPcElmProps) {
     //
     const ref_timeline_run = useRef(false);
     const ref_sound_run = useRef(false);
@@ -138,15 +142,14 @@ function VideoElm({
 
     //
     function handleClickOutSide() {
-        open_setting && toggleOpenSetting();
-        handleSettingDetail('home');
+        handleCloseSettings();
     }
 
     //
     return (
         <div
             ref={ref_main_video}
-            className={`${_getClassModuleCss('VideoElm')}`}
+            className={`${_getClassModuleCss('VideoPcElm')}`}
         >
             <VideoItem
                 ref_video_elm={ref_video_elm}
@@ -154,12 +157,12 @@ function VideoElm({
                 track_arr={track_arr}
             />
 
-            <div className={`${_getClassModuleCss('VideoElm_face')}`}>
+            <div className={`${_getClassModuleCss('VideoPcElm_face')}`}>
                 {face_video_elm}
             </div>
 
             {is_waiting && (
-                <div className={`${_getClassModuleCss('VideoElm_waiting')}`}>
+                <div className={`${_getClassModuleCss('VideoPcElm_waiting')}`}>
                     <CircleLoading is_fetching={is_waiting} />
                 </div>
             )}
@@ -173,7 +176,9 @@ function VideoElm({
                 >
                     <div
                         ref={ref_settings}
-                        className={`${_getClassModuleCss('VideoElm_settings')}`}
+                        className={`${_getClassModuleCss(
+                            'VideoPcElm_settings'
+                        )}`}
                     >
                         <VideoSettingsPage
                             setting_name={setting_name}
@@ -236,4 +241,4 @@ function VideoElm({
     );
 }
 
-export default VideoElm;
+export default VideoPcElm;

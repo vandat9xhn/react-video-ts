@@ -15,7 +15,7 @@ function _getClassModuleCss(className = '') {
 }
 
 //
-function CircleLoading({ is_fetching = false, size_icon = '2rem' }) {
+function CircleLoading({ is_fetching = false, size_icon = '48px' }) {
     //
     return (
         <div

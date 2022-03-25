@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //
-import { Video, VideoLive } from 'react-video-ts';
+import { Video, VideoLive, VideoMb } from 'react-video-ts';
 import 'react-video-ts/dist/index.css';
 //
 import subtitle from './subtitle.vtt';
@@ -27,7 +27,8 @@ const App = () => {
                     style={{
                         margin: 'auto',
                         width: '700px',
-                        height: '450px',
+                        maxWidth: '100%',
+                        height: '400px',
                         backgroundColor: 'black'
                     }}
                 >

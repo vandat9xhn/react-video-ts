@@ -83,6 +83,9 @@ export function useVideoUtils({
     const ref_has_custom_speed = useRef(false);
     const ref_chosen_custom_speed = useRef(false);
 
+    const ref_open_utils = useRef(true);
+    // const ref_timeout_open_utils = useRef<null | NodeJS.Timeout>(null);
+
     //
     const is_zoom_max = ref_zoom_lv.current == max_zoom_lv;
 
@@ -340,6 +343,13 @@ export function useVideoUtils({
         afterChangeZoomLv();
     }
 
+    //
+    function toggleOpenUtils() {
+        const new_open_utils = !ref_open_utils.current;
+        ref_open_utils.current = new_open_utils;
+        forceUpdate();
+    }
+
     // --- VOLUME
 
     //
@@ -425,6 +435,12 @@ export function useVideoUtils({
 
     function handleSettingDetail(setting_name: settingsPageType) {
         ref_setting_name.current = setting_name;
+        forceUpdate();
+    }
+
+    function handleCloseSettings() {
+        ref_open_setting.current = false;
+        ref_setting_name.current = 'home';
         forceUpdate();
     }
 
@@ -530,6 +546,7 @@ export function useVideoUtils({
         //
         ref_setting_name,
         ref_open_setting,
+        ref_open_utils,
 
         ref_speed,
         ref_custom_speed,
@@ -537,6 +554,7 @@ export function useVideoUtils({
         ref_chosen_custom_speed,
 
         toggleOpenSetting,
+        handleCloseSettings,
         handleSettingDetail,
 
         changeSubtitleIx,
@@ -550,6 +568,7 @@ export function useVideoUtils({
         changeVolume,
         toggleMute,
         changeZoomLv,
+        toggleOpenUtils,
 
         changeTime,
         startMoveTime,
